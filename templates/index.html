@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kudos Kounter</title>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>Kudos Kounter</h1>
+            <div id="joneBlock">
+                <h3>Jone kudos</h3>
+                <ul>
+                {% for date, kudo in joneScores.items() %}
+                <li>{{ kudo }} - {{ date }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div id="oyBlock">
+                <h3>Øystein kudos</h3>
+                <ul>
+                    {% for date, kudo in oyScores.items() %}
+                    <li>{{ kudo }} - {{ date }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="writeKudo">
+                <form action="writeKudo" method="POST">
+                    <select name="name">
+                        <option value="Jone">Jone</option>
+                        <option value="Øystein">Øystein</option>
+                    </select>
+                    <input type="text" name="kudo"/>
+                    <button type="submit">KUDOS!</button>
+                </form>
+            </div>
+    </body>
+</html>
