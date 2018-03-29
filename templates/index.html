@@ -5,20 +5,23 @@
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
+        <div id="cont">
         <h1>Kudos Kounter</h1>
             <div id="joneBlock">
-                <h3>Jone kudos</h3>
+                <h3 class="nameHeading">Jone kudos:</h3>
+                <div class="counter">{{ joneScores|length }} </div>
                 <ul>
                 {% for date, kudo in joneScores.items() %}
-                <li>{{ kudo }} - {{ date }}</li>
+                <li><a href="#">{{ kudo }} - {{ date }}</a></li>
                 {% endfor %}
                 </ul>
             </div>
             <div id="oyBlock">
-                <h3>Øystein kudos</h3>
+                <h3 class="nameHeading">Øystein kudos:</h3>
+                <div class="counter">{{ oyScores|length }} </div>
                 <ul>
                     {% for date, kudo in oyScores.items() %}
-                    <li>{{ kudo }} - {{ date }}</li>
+                    <li><a href="#">{{ kudo }} - {{ date }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -32,5 +35,6 @@
                     <button type="submit">KUDOS!</button>
                 </form>
             </div>
+        </div>
     </body>
 </html>

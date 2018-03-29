@@ -8,8 +8,6 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     scores = readScores()
-    print(scores[0])
-    print(scores[1])
     return render_template('index.html', joneScores = scores[0], oyScores = scores[1])
 
 @app.route("/writeKudo", methods=["POST"])
@@ -29,7 +27,7 @@ def readScores():
             if ''.join(row).strip():
                 if row[0] == "Jone":
                     joneScores[row[1]] = row[2]
-                elif row[0] == "Øystein":
+                elif row[0] == "oys":
                     oyScores[row[1]] = row[2]
     return [joneScores, oyScores]
 
@@ -37,7 +35,10 @@ def writeKudoToFile(name, kudo):
     date = datetime.date.today()
     with open('kudos.csv', 'a') as csvfile:
         writer = csv.writer(csvfile, delimiter='|')
-        writer.writerow([name, kudo, date])
+        if name != "Jone":
+            writer.writerow(["oys", kudo.encode('utf-8'), date])
+        else:
+            writer.writerow([name, kudo.encode('utf-8') , date])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8088)
