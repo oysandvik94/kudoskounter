@@ -36,9 +36,9 @@ def writeKudoToFile(name, kudo):
     with open('kudos.csv', 'a') as csvfile:
         writer = csv.writer(csvfile, delimiter='|')
         if name != "Jone":
-            writer.writerow(["oys", kudo.encode('utf-8'), date])
+            writer.writerow(["oys", kudo, date])
         else:
-            writer.writerow([name, kudo.encode('utf-8') , date])
+            writer.writerow([name, kudo, date])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8088)
